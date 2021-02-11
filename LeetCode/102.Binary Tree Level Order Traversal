@@ -1,0 +1,34 @@
+int treeHeight(TreeNode *root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return (max(treeHeight(root->left),treeHeight(root->right))+1);
+    }
+}
+
+void solve(TreeNode *root,int h,vector<vector<int>>&all_levels)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    else
+    {
+        all_levels[h].push_back(root->val);
+        solve(root->left,h+1,all_levels);
+        solve(root->right,h+1,all_levels);
+    }
+}
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> all_levels(treeHeight(root));
+        solve(root,0,all_levels);
+        return all_levels;
+    }
+};
