@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int dp[46]={0};
+    int climbStairs(int n) {
+        if(n==1)
+        {
+            return dp[1]=1;
+        }
+        if(n==2)
+        {
+            return dp[2]=2;
+        }
+        if(dp[n]==0)
+        {
+            int o1 = climbStairs(n-1);
+            int o2 = climbStairs(n-2);
+            dp[n] = o1+o2;
+            return dp[n];
+        }
+        else
+        {
+            return dp[n];
+        }
+    }
+};
