@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int dp[101][101]={0};
+    int uniquePaths(int m, int n) {
+        if(m==1||n==1)
+        {
+            return 1;
+        }
+        if(dp[m][n]!=0)
+        {
+            return dp[m][n];
+        }
+        int p1 = uniquePaths(m-1,n);
+        int p2 = uniquePaths(m,n-1);
+        return dp[m][n] = p1+p2;
+    }
+};
