@@ -1,0 +1,11 @@
+void specialPrint(int n)
+{
+    if (n == 0)
+        return;
+    else
+    {
+        cout << n << endl;
+        specialPrint(n - 1);
+        cout << n << endl;
+    }
+}
