@@ -1,0 +1,19 @@
+int countNodes(TreeNode *root)
+{
+    if (root == NULL)
+        return 0;
+ 
+    int left = countNodes(root->left);
+    int right = countNodes(root->right);
+ 
+    return left + right + 1;
+}
+ 
+int countBranches(TreeNode *root)
+{
+    int nodes = countNodes(root);
+    if (nodes != 0)
+        return nodes - 1;
+    else
+        return 0;
+}
