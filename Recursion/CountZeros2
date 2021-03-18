@@ -1,0 +1,17 @@
+int countZeros2(string s, int length, bool ld = true, int idx = 0)
+{
+    if (idx == length)
+        return 0;
+ 
+    else if (s[idx] == '0')
+    {
+        if (ld == false)
+            return 1 + countZeros2(s, length, ld, idx + 1);
+        else
+            return countZeros2(s, length, ld, idx + 1);
+    }
+    else
+    {
+        return countZeros2(s, length, false, idx + 1);
+    }
+}
