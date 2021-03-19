@@ -1,0 +1,18 @@
+bool isPalindrome(string s, int l = -2, int r = -1)
+{
+    if (l >= r)
+        return true;
+    else if (l == -2 and r == -1)
+    {
+        l = 0;
+        r = s.length() - 1;
+        return isPalindrome(s, l, r);
+    }
+    else
+    {
+        if (s[l] == s[r])
+            return isPalindrome(s, l + 1, r - 1);
+        else
+            return false;
+    }
+}
