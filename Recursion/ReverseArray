@@ -1,0 +1,16 @@
+void reverseArray(int A[], int n, int l = -2, int r = -1)
+{
+    if (l >= r)
+        return;
+    else if (l == -2 and r == -1)
+    {
+        l = 0;
+        r = n - 1;
+        reverseArray(A, n, l, r);
+    }
+    else
+    {
+        swap(A[l], A[r]);
+        reverseArray(A, n, l + 1, r - 1);
+    }
+}
