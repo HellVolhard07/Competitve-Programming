@@ -1,0 +1,27 @@
+void pito314(char s[], int &length, int pos=0)
+{
+    if(pos>=length-1)
+    {
+        return;
+    }
+    else
+    {
+        if(s[pos]=='p' && s[pos+1]=='i')
+        {
+            for(int i=length-1;i>pos+1;i--)
+            {
+                s[i+2]=s[i];
+            }
+            s[pos]='3';
+            s[pos+1]='.';
+            s[pos+2]='1';
+            s[pos+3]='4';
+            length+=2;
+            pito314(s,length,pos+4);
+        }
+        else
+        {
+            pito314(s,length,pos+1);
+        }
+    }
+}
