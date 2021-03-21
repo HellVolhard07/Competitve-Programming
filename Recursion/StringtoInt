@@ -1,0 +1,9 @@
+int strtoint(string s, int length)
+{
+    if(length == 0)
+    {
+        return 0;
+    }
+    int x = strtoint(s,length-1);
+    return x*10+(s[length-1]-'0');
+}
