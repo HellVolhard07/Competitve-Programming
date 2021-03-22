@@ -1,0 +1,12 @@
+void printSubsequence(string s, int pos = 0, string ans = "")
+{
+ 
+    if (pos == s.length())
+    {
+        cout << ans << endl;
+        return;
+    }
+ 
+    printSubsequence(s, pos + 1, ans + s[pos]);
+    printSubsequence(s, pos + 1, ans);
+}
