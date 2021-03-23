@@ -1,0 +1,18 @@
+void printPermutations(string &s, int len, int pos = 0)
+{
+    if (pos == len)
+    {
+        cout << s << endl;
+        return;
+    }
+    bool used[26] = {0};
+    for (int i = pos; i < len; i++)
+    {
+        if (used[s[i] - 'a'] == true)
+            continue;
+        swap(s[i], s[pos]);
+        printPermutations(s, len, pos + 1);
+        swap(s[i], s[pos]);
+        used[s[i] - 'a'] = true;
+    }
+}
