@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int apples = 0, oranges = 0;
+    int s, t;
+    cin>>s>>t;
+    int a, b;
+    cin>>a>>b;
+    int m, n;
+    cin>>m>>n;
+    int app[m];
+    int ora[n];
+    for(int i=0;i<m;i++)
+    {
+        cin>>app[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+        cin>>ora[i];
+    }
+    for(int i=0;i<m;i++)
+    {
+        app[i] = app[i] + a;
+    }
+    for(int i=0;i<n;i++)
+    {
+        ora[i] = ora[i] + b;
+    }
+    for(int i=0;i<m;i++)
+    {
+        if(app[i]>=s&&app[i]<=t)
+        {
+            apples++;
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(ora[i]>=s&&ora[i]<=t)
+        {
+            oranges++;
+        }
+    }
+    cout<<apples<<endl;
+    cout<<oranges<<endl;
+}
