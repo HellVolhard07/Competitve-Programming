@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int x1, v1, x2, v2;
+    cin>>x1>>v1>>x2>>v2;
+    int c = 0;
+    for(int i=0;i<10000;i++)
+    {
+        if((x1 + (i - 1) * v1) == (x2 + (i - 1) * v2))
+        {
+            c++;
+            break;
+        }
+    }
+    if(c==0)
+    {
+        cout<<"NO";
+    }
+    else
+    {
+        cout<<"YES";
+    }
+}
