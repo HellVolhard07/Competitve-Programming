@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    long long int A[10];
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+    }
+    long long int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum=sum+A[i];
+    }
+    cout<<sum;
+    return 0;
+}
