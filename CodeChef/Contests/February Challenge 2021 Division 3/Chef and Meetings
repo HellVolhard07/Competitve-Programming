@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+#define int long long
+
+void convert(string &T, string &TF)
+{
+    if(T[0]=='1'&&T[1]=='2'&&TF=="AM")
+    {
+        T[0]='0';
+        T[1]='0';
+    }
+    if(!(T[0]=='1'&&T[1]=='2')&&TF=="PM")
+    {
+        T[0]=T[0]+1;
+        T[1]=T[1]+2;
+    }
+}
+
+void solve()
+{
+    string ptime;
+    string pformat;
+    cin>>ptime;
+    cin>>pformat;
+    convert(ptime,pformat);
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        string st;
+        string stf;
+        string et;
+        string etf;
+        cin>>st;
+        cin>>stf;
+        cin>>et;
+        cin>>etf;
+        convert(st,stf);
+        convert(et,etf);
+        int stm = ((st[0]-'0')*10+(st[1]-'0'))*60+((st[3]-'0')*10)+(st[4]-'0');
+        int etm = ((et[0]-'0')*10+(et[1]-'0'))*60+((et[3]-'0')*10)+(et[4]-'0');
+        int ptm = ((ptime[0]-'0')*10+(ptime[1]-'0'))*60+((ptime[3]-'0')*10)+(ptime[4]-'0');
+        if(ptm>=stm&&ptm<=etm)
+        {
+            cout<<"1";
+        }
+        else
+        {
+            cout<<"0";
+        }
+    }
+    cout<<"\n";
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
