@@ -1,0 +1,33 @@
+#include <iostream>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void solve()
+{
+    int am, bm, cm, tm, a, b, c;
+    cin>>am>>bm>>cm>>tm>>a>>b>>c;
+    int t = a+b+c;
+    if(a>=am&&b>=bm&&c>=cm&&t>=tm)
+    {
+        cout<<"YES\n";
+    }
+    else
+    {
+        cout<<"NO\n";
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
