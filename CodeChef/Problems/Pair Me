@@ -1,0 +1,30 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void solve()
+{
+    int A[3]={0};
+    cin>>A[0]>>A[1]>>A[2];
+    sort(A,A+3);
+    if(A[0]+A[1]==A[2])
+    {
+        std::cout << "YES" << std::endl;
+    }
+    else
+    {
+        std::cout << "NO" << std::endl;
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
