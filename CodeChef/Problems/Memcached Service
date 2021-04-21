@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void solve()
+{
+    int c=0;
+    int n;
+    cin>>n;
+    vector<string> commands;
+    string command;
+    for(int i=0;i<n;i++)
+    {
+        cin>>command;
+        commands.push_back(command);
+    }
+    if(commands[0]=="stop")
+    {
+        cout<<"404"<<endl;
+        c++;
+    }
+    else if(commands[0]!="stop")
+    {
+        for(int i=1;i<n-1;i++)
+        {
+            if(commands[i]=="stop"&&commands[i+1]=="stop")
+            {
+                cout<<"404"<<endl;
+                c++;
+                break;
+            }
+        }
+    }
+    if(c==0)
+    {
+        cout<<"200"<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
