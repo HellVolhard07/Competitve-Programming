@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+int countDistinct(int arr[], int n)
+{
+    unordered_set<int> s;
+    int res = 0;
+    for (int i = 0; i < n; i++) 
+    {
+        if (s.find(arr[i]) == s.end()) 
+        {
+            s.insert(arr[i]);
+            res++;
+        }
+    }
+    return res;
+}
+
+void solve()
+{
+    int n, x;
+    cin>>n>>x;
+    int A[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+    }
+    int unique = countDistinct(A,n);
+    int remaining = n - unique;
+    if(remaining>=x)
+    {
+        cout<<unique<<endl;
+    }
+    else
+    {
+        cout<<unique-x+remaining<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
