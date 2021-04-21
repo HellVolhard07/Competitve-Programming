@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+void solve()
+{
+    long long int a, b;
+    cin>>a>>b;
+    if(a%2 == 0 && b%2 == 0)
+    {
+        std::cout << (2*(a/2)*(b/2)) << std::endl;
+    }
+    else if(a%2 == 0 && b%2 !=0)
+    {
+        std::cout << ((a/2)*((b/2)+1)) + ((a/2)*(b/2)) << std::endl;
+    }
+    else if(a%2 != 0 && b%2 == 0)
+    {
+        std::cout << (((a/2)+1)*(b/2)) + ((a/2)*(b/2))<< std::endl;
+    }
+    else
+    {
+        std::cout << ((a/2)+1)*((b/2)+1) + ((a/2)*(b/2)) << std::endl;
+        
+    }    
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
