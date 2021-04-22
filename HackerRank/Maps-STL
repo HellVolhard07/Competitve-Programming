@@ -1,0 +1,51 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+unordered_map<string, int> mp;
+unordered_map<string, int>::iterator itr;
+
+void solve()
+{
+    int q;
+    int type;
+    string x;
+    int y;
+    cin>>q;
+    for(int i=0;i<q;i++)
+    {
+        cin>>type;
+        cin>>x;
+        switch(type)
+        {
+            case 1:
+            cin>>y;
+            if(mp.count(x))
+            {
+                mp[x]+=y;
+            }
+            else
+            {
+                mp[x] = y;
+            }
+            break;
+            case 2:
+            mp[x] = 0;
+            break;
+            case 3:
+            cout<<mp[x]<<endl;
+        }
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+    return 0;
+}
