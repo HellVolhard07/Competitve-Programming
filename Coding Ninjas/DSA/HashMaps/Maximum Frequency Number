@@ -1,0 +1,52 @@
+#include <iostream>
+#include <unordered_map>
+//#include <algorithm>
+//#include <vector>
+//#include <string>
+//#include <math.h>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+int solve(int *A, int n)
+{
+    unordered_map <int,int> m;
+    for(int i=0;i<n;i++)
+    {
+        if(m.count(A[i]))
+        {
+            m[A[i]] += 1;
+        }
+        else
+        {
+            m[A[i]] = 1;
+        }
+    }
+    int maxfreq = 0;
+    int ans = 0;
+    for(int i=0;i<n-1;i++)
+    {
+        if(maxfreq<m[A[i]])
+        {
+            ans = A[i];
+            maxfreq = m[A[i]];
+        }
+    }
+    return ans;
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
+    cin>>n;
+    int A[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+    }
+    solve(A,n);
+	return 0;
+}
