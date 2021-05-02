@@ -1,5 +1,6 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -14,6 +15,35 @@ class TreeNode {
         this->data = data;
     }
 };
+
+TreeNode<int>* takeInputLevelWise()
+{
+    int rootData;
+    cout<<"Enter root data: ";
+    cin>>rootData;
+    TreeNode<int>* root = new TreeNode<int>(rootData);
+    
+    queue<TreeNode<int>*> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0)
+    {
+        TreeNode<int>* front = pendingNodes.front();
+        pendingNodes.pop();
+        cout<<"Enter number of children of "<<front->data<<" : ";
+        int numChild;
+        cin>>numChild;
+        for(int i=0;i<numChild;i++)
+        {
+            int childData;
+            cout<<"Enter "<<i<<" th child of "<<front->data<<" : ";
+            cin>>childData;
+            TreeNode<int>* child = new TreeNode<int>(childData);
+            front->children.push_back(child);
+            pendingNodes.push(child);
+        }
+    }
+    return root;
+}
 
 TreeNode<int>* takeInput()
 {
@@ -51,41 +81,31 @@ void printTree(TreeNode<int>* root)
     }
 }
 
-int main()
+void printTreeLevelWise(TreeNode<int>* root)
 {
-    TreeNode<int>* root = takeInput();
-    printTree(root);
+    if(root==NULL)
+    {
+        return;
+    }
+
+    queue<TreeNode<int>*> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0)
+    {
+        TreeNode<int>* front = pendingNodes.front();
+        pendingNodes.pop();
+        cout<<front->data<<": ";
+        for(int i=0;i<front->children.size();i++)
+        {
+            cout<<front->children[i]->data<<", ";
+            pendingNodes.push(front->children[i]);
+        }
+        cout<<endl;
+    }
 }
 
-*********************************************************************************************************************************************************************************
-*********************************************************************************************************************************************************************************
-
-INPUT:
-
-Enter data: 1
-Enter number of children of 1: 3
-Enter data: 2
-Enter number of children of 2: 2
-Enter data: 5
-Enter number of children of 5: 0
-Enter data: 6
-Enter number of children of 6: 0
-Enter data: 3
-Enter number of children of 3: 1
-Enter data: 7
-Enter number of children of 7: 0
-Enter data: 4
-Enter number of children of 4: 1
-Enter data: 8
-Enter number of children of 8: 0
-
-OUTPUT:
-
-1: 2, 3, 4, 
-2: 5, 6, 
-5: 
-6: 
-3: 7, 
-7: 
-4: 8, 
-8:
+int main()
+{
+    TreeNode<int>* root = takeInputLevelWise();
+    printTreeLevelWise(root);
+}
