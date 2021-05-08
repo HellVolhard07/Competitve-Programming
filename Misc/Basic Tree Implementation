@@ -114,9 +114,20 @@ int countNodes(TreeNode<int>* root)
     return ans;
 }
 
+int height(TreeNode<int>* root)
+{
+    int ans = 0;
+    for(int i=0;i<root->children.size();i++)
+    {
+        ans = max(ans, height(root->children[i]));
+    }
+    return ans+1;
+}
+
 int main()
 {
     TreeNode<int>* root = takeInputLevelWise();
     printTreeLevelWise(root);
-    cout<<"Number of nodes in the tree :"<<countNodes(root);
+    cout<<"Number of nodes in the tree :"<<countNodes(root);cout<<endl;
+    cout<<"Height of the tree :"<<height(root);
 }
