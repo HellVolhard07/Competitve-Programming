@@ -106,6 +106,10 @@ void printTreeLevelWise(TreeNode<int>* root)
 
 int countNodes(TreeNode<int>* root)
 {
+    if(root == NULL)
+    {
+        return;
+    }
     int ans = 1;
     for(int i=0;i<root->children.size();i++)
     {
@@ -122,6 +126,24 @@ int height(TreeNode<int>* root)
         ans = max(ans, height(root->children[i]));
     }
     return ans+1;
+}
+
+//Level is same as depth
+void printAtLevelK(TreeNode<int>* root, int k)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    if(k==0)
+    {
+        cout<<root->data<<endl;
+        return;
+    }
+    for(int i=0;i<root->children.size();i++)
+    {
+        printAtLevelK(root->children[i],k-1);
+    }
 }
 
 int main()
