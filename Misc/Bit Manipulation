@@ -1,0 +1,31 @@
+#include <iostream>
+//#include <algorithm>
+//#include <vector>
+//#include <string>
+//#include <math.h>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+int getBit(int n, int pos)
+{
+    // if(n & (1<<pos) != 0)
+    // {
+    //     return 1;
+    // }
+    // else
+    // {
+    //     return 0;
+    // }
+    //return (n>>pos & 1);
+    return ((n & 1<<pos) != 0);
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout<<getBit(5,1)<<endl;
+	return 0;
+}
