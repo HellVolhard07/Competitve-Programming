@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <queue>
 
@@ -14,6 +15,14 @@ class TreeNode {
     {
         this->data = data;
     }
+    
+    // ~TreeNode()
+    // {
+    //     for(int i=0;i<children.size();i++)
+    //     {
+    //         delete children[i];
+    //     }
+    // }
 };
 
 TreeNode<int>* takeInputLevelWise()
@@ -148,11 +157,11 @@ void printAtLevelK(TreeNode<int>* root, int k)
 
 int countLeaves(TreeNode<int>* root)
 {
+    int ans = 0;
     if(root == NULL)
     {
         return 0;
     }
-    int ans = 0;
     if(root->children.size() == 0)
     {
         return 1;
@@ -190,11 +199,29 @@ void postorder(TreeNode<int>* root)
     cout<<root->data<<" ";
 }
 
+void deleteTree(TreeNode<int>* root)
+{
+    for(int i=0;i<root->children.size();i++)
+    {
+        deleteTree(root->children[i]);
+    }
+    delete root;
+}
+
 int main()
 {
     TreeNode<int>* root = takeInputLevelWise();
     printTreeLevelWise(root);
     cout<<"Number of nodes in the tree :"<<countNodes(root);cout<<endl;
     cout<<"Height of the tree :"<<height(root)<<endl;
-    cout<<"Number of leaves in the tree :"<<countNodes(root);cout<<endl;
+    cout<<"Number of leaves in the tree :"<<countLeaves(root);cout<<endl;
+    cout<<"Preorder traversal : ";
+    preorder(root);
+    cout<<endl;
+    cout<<"Postorder traversal : ";
+    postorder(root);
+    cout<<endl;
+    deleteTree(root);
+    cout<<"Tree deleted succesfully";
+    //delete root (recursive destructor)
 }
