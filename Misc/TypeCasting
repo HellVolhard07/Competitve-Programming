@@ -1,0 +1,39 @@
+#include <iostream>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+int main() {
+    
+    int i = 65;
+    char c = i;
+    cout<<c<<endl;
+    
+    int* p = &i;
+    char* cp = (char*)p;        //Expilicit typecasting
+    
+    cout<<p<<endl;              //Prints address in case of integer pointer
+    cout<<cp<<endl;             //Goes to the address and prints until NULL pointer in case of char pointer
+    
+    cout<<*p<<endl;
+    cout<<*cp<<endl;            //Integer is stored in a opposite fashion therefore A is printed
+    cout<<*(cp+1)<<endl;        //That is the least significant byte is stored first
+    cout<<*(cp+2)<<endl;        //Therefore bytes are stored as
+    cout<<*(cp+3)<<endl;        //|65|0|0|0| instread of |0|0|0|65|
+	  return 0;
+}
+
+************************************************************************************************************************************************************************************
+************************************************************************************************************************************************************************************
+
+OUTPUT :
+
+A
+0x7fff30345e78
+A
+65
+A
+
+
