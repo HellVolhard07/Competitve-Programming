@@ -1,0 +1,72 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void whatsign(int position, int first)
+{
+    if(first > 0)
+    {
+        if(position % 2 == 0)
+        {
+            cout<<"POSITIVE"<<endl;
+        }
+        else
+        {
+            cout<<"NEGATIVE"<<endl;
+        }
+    }
+    if(first < 0)
+    {
+        if(position % 2 == 0)
+        {
+            cout<<"NEGATIVE"<<endl;
+        }
+        else
+        {
+            cout<<"POSITIVE"<<endl;
+        }
+    }
+}
+
+void solve()
+{
+    int n, q;
+    cin>>n>>q;
+    vector<int> A(n,0);
+    for(int i = 0;i < n;i++)
+    {
+        cin>>A[i];
+    }
+    sort(A.begin(),A.end());
+    int first_interval = 1;
+    if(n%2 == 1)
+    {
+        first_interval = -1;
+    }
+    for(int i = 0;i < q;i++)
+    {
+        int x, position;
+        cin>>x;
+        position = lower_bound(A.begin(), A.end(), x) - A.begin() + 1;
+        if(A[position - 1] == x)
+        {
+            cout<<"0"<<endl;
+        }
+        else
+        {
+            whatsign(position - 1, first_interval);
+        }
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+	return 0;
+}
