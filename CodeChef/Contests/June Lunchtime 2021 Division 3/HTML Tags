@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void solve()
+{
+    string tag;
+    cin>>tag;
+    int n = tag.length();
+    if(n <= 3)
+    {
+        cout<<"Error"<<endl;
+    }
+    else if(tag[0] == '<' && tag[1] == '/' && tag[n-1] == '>')
+    {
+        for(int i = 2;i<n-1;i++)
+        {
+            if(!(tag[i] >= 'a' && tag[i] <= 'z' || tag[i] >= '0' && tag[i] <= '9'))
+            {
+                cout<<"Error"<<endl;
+                return;
+            }
+        }
+        cout<<"Success"<<endl;
+    }
+    else
+    {
+        cout<<"Error"<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
