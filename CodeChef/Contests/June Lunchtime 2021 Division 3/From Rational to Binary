@@ -1,0 +1,37 @@
+#include <iostream>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+bool IsPowerOfTwo(int x)
+{
+    return ((x & (x - 1)) == 0);
+}
+
+void solve()
+{
+    int a, b;
+    cin>>a>>b;
+    if(IsPowerOfTwo(b))
+    {
+        cout<<"Yes"<<endl;
+    }
+    else
+    {
+        cout<<"No"<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
