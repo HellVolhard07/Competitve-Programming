@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void solve()
+{
+    string a;
+    cin>>a;
+    if((a[0] - '0' == 1))
+    {
+        cout<<a.substr(0,1) + "0" + a.substr(1) <<endl;
+    }
+    else
+    {
+        cout<<"1" + a<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
