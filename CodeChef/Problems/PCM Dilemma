@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+#define int long long
+#define endl "\n"
+
+void solve()
+{
+    int p=1, c=1, m=1;
+    string s;
+    cin>>s;
+    for(int i=0;i<3;i++)
+    {
+        if(s[i]=='P')
+        {
+            p--;
+        }
+        if(s[i]=='C')
+        {
+            c--;
+        }
+        if(s[i]=='M')
+        {
+            m--;
+        }
+    }
+    if(p==0&&c==0&&m==0)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
