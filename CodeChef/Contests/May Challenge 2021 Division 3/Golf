@@ -1,0 +1,36 @@
+#include <iostream>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+void solve()
+{
+    int n, x, k;
+    cin>>n>>x>>k;
+    if(x%k==0)
+    {
+        cout<<"YES"<<endl;
+    }
+    else if(((n+1)-x)%k==0)
+    {
+        cout<<"YES"<<endl;
+    }
+    else
+    {
+        cout<<"NO"<<endl;
+    }
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+	return 0;
+}
