@@ -1,0 +1,114 @@
+#include <iostream>
+
+#define int long long
+#define endl "\n"
+
+using namespace std;
+
+class node {
+    
+    public:
+    int val;
+    node* next;
+    
+    node() {
+        this->val = 0;
+        this->next = NULL;
+    }
+    
+    node(int x) {
+        this->val = x;
+        this->next = NULL;
+    }
+};
+
+node* takeInput() {
+    int data;
+    cin>>data;
+    node* head = NULL;
+    node* temp = NULL;
+    while(data != -1) {
+        node* newNode = new node(data);
+        if(head == NULL) {
+            head = newNode;
+            temp = head;
+        }
+        else {
+            temp -> next = newNode;
+            temp = temp -> next;
+        }
+        cin>>data;
+    }
+    return head;
+}
+
+node* insertNode (node* head, int data, int pos) {
+    node* newNode = new node(data);
+    node* temp = head;
+    int count = 0;
+    
+    if(pos == 0) {
+        newNode -> next = head;
+        head = newNode;
+        return head;
+    }
+    
+    while(temp != NULL and count < pos - 1) {
+        temp = temp -> next;
+        count++;
+    }
+    
+    if(temp != NULL) {
+    newNode -> next = temp -> next;
+    temp -> next = newNode;
+    }
+    return head;
+}
+
+node* deleteNode (node* head, int pos) {
+    node* temp = head;
+    int count = 0;
+    if(pos == 0) {
+        head = head -> next;
+        delete(temp);
+        return head;
+    }
+    while(temp != NULL and count < pos - 1) {
+        temp = temp -> next;
+        count++;
+    }
+    if(temp != NULL) {
+        node* del = temp -> next;           // delete(temp -> next)
+        temp -> next = temp -> next -> next;
+        delete(del);
+    }
+    return head;
+}
+
+void print(node* head) {
+    node* temp = head;
+    while(temp!=NULL)
+    {
+        cout<<temp->val<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+void solve() {
+    node* head = takeInput();
+    print(head);
+    head = insertNode(head, 99, 2);
+    print(head);
+    head = insertNode(head, 2, 0);
+    print(head);
+    head = deleteNode(head, 0);
+    print(head);
+    head = deleteNode(head, 9);
+    print(head);
+}
+
+int main() {
+  solve();
+	return 0;
+}
