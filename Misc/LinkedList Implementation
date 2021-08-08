@@ -65,7 +65,7 @@ node* insertNode (node* head, int data, int pos) {
     return head;
 }
 
-node* deleteNode (node* head, int pos) {
+node* delete_ith_node_iterative (node* head, int pos) {
     node* temp = head;
     int count = 0;
     if(pos == 0) {
@@ -85,6 +85,57 @@ node* deleteNode (node* head, int pos) {
     return head;
 }
 
+node* delete_ith_node_recursive (node* head, int pos) {
+    if (pos < 0)
+       return head;
+ 
+    if (head == NULL)
+       return NULL;
+  
+    if (pos == 0)
+    {
+        node* temp = head->next;
+        delete(head);
+        return temp; 
+    }
+     
+    head->next = delete_ith_node_recursive(head->next, pos-1);
+    return head;
+}
+
+void print_ith_node_iterative (node* head, int i) {
+    while(i >= 0) {
+        if(i == 0) {
+            cout<<head -> val;
+            return;
+        }
+        else {
+            if(head -> next != NULL) {
+                head = head -> next;
+                i--;
+            }
+            else {
+                return;
+            }
+        }
+    }
+}
+
+void print_ith_node_recursive (node* head, int i) {
+    if(i == -1) {
+        return;
+    }
+    if(i == 0 and head -> val != NULL) {
+        cout<<head->val;
+    }
+    else {
+        if(head -> next != NULL) {
+            print_ith_node_recursive(head -> next, i - 1);
+        }
+        return;
+    }
+}
+
 void print(node* head) {
     node* temp = head;
     while(temp!=NULL)
@@ -102,13 +153,17 @@ void solve() {
     print(head);
     head = insertNode(head, 2, 0);
     print(head);
-    head = deleteNode(head, 0);
+    head = delete_ith_node_recursive(head, 0);
     print(head);
-    head = deleteNode(head, 9);
+    head = delete_ith_node_recursive(head, 3);
     print(head);
+    print_ith_node_iterative(head, 2);
+    print_ith_node_recursive(head, 2);
 }
 
-int main() {
-  solve();
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
 	return 0;
 }
