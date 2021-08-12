@@ -1,0 +1,53 @@
+/*
+Find the largest 3 numbers of the given array and display them in non-decreasing order
+*/
+
+*********************************************************************************************************************************************************************************
+*********************************************************************************************************************************************************************************
+
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+vector<int> maximum = {INT_MIN, INT_MIN, INT_MIN};
+
+void shift(vector<int> &max, int x, int index) {
+    for(int i = 0 ; i < index ; i++) {
+        max[i] = max[i + 1];
+    }
+    max[index] = x;
+}
+
+void solve(vector<int> array) {
+    for(int i = 0; i < array.size() ; i++) {
+        if(array[i] > maximum[2]) {
+            shift(maximum, array[i], 2);
+        }
+        else if(array[i] > maximum[1]) {
+            shift(maximum, array[i], 1);
+        }
+        else if(array[i] > maximum[0]) {
+            shift(maximum, array[i], 0);
+        }
+    }
+}
+
+void threeLargest() {
+    vector<int> a = {0, 188, 1, 1, 10, -5, -6, -18, 18};
+    solve(a);
+    for(int i = 0; i < 3 ; i++) {
+        cout<<maximum[i]<<" ";
+    }
+}
+
+int main() {
+    threeLargest();
+}
+
+*********************************************************************************************************************************************************************************
+*********************************************************************************************************************************************************************************
+
+Output: 
+10 18 188 
