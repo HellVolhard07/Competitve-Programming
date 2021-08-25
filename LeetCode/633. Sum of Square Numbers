@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        int small = 0;
+        int large = (int)sqrt(c);
+        bool ans = false;
+        while(!ans && small <= large) {
+            if(pow(small, 2) + pow(large, 2) == c) {
+                ans = true;
+            }
+            else if(pow(small, 2) + pow(large, 2) > c) {
+                large--;
+            }
+            else {
+                small++;
+            }
+        }
+        return ans;
+    }
+};
