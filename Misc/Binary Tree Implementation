@@ -1,0 +1,113 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+class node {
+    public:
+    int data;
+    node* left;
+    node* right;
+    
+    node(int data) {
+        this->data = data;
+        left = NULL;
+        right = NULL;
+    }
+    
+    ~node() {
+        delete left;
+        delete right;
+    }
+};
+
+void printTree(node* root) {
+    if(!root) {
+        return;
+    }
+    cout<<root->data<<": ";
+    if(root->left) {
+        cout<<"L"<<root->left->data;
+    }
+    if(root->right) {
+        cout<<"R"<<root->right->data;
+    }
+    cout<<endl;
+    printTree(root->left);
+    printTree(root->right);
+}
+
+void printTreeLevelWise(node* root) {
+    if(!root) {
+        return;
+    }
+    queue<node*> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0) {
+        node* front = pendingNodes.front();
+        pendingNodes.pop();
+        cout<<front->data<<": ";
+        if(front->left){
+            cout<<"L"<<front->left->data;
+            pendingNodes.push(front->left);
+        }
+        if(front->right) {
+            cout<<"R"<<front->right->data;
+            pendingNodes.push(front->right);
+        }
+        cout<<endl;
+    }
+}
+
+node* takeInput() {
+    int rootData;
+    //cout<<"Enter data";
+    cin>>rootData;
+    if(rootData == -1) {
+        return NULL;
+    }
+    node* root = new node(rootData);
+    node* leftChild = takeInput();
+    node* rightChild = takeInput();
+    root->left = leftChild;
+    root->right = rightChild;
+    return root;
+}
+
+node* takeInputLevelWise() {
+    int rootData;
+    cout<<"Enter root data\n";
+    cin>>rootData;
+    if(rootData == -1) {
+        return NULL;
+    }
+    node* root = new node(rootData);
+    queue<node*> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0) {
+        node* front = pendingNodes.front();
+        pendingNodes.pop();
+        cout<<"Enter left child of "<<front->data<<": \n";
+        int leftChildData;
+        cin>>leftChildData;
+        if(leftChildData != -1) {
+            node* child = new node(leftChildData);
+            front->left = child;
+            pendingNodes.push(child);
+        }
+        cout<<"Enter right child of "<<front->data<<": \n";
+        int rightChildData;
+        cin>>rightChildData;
+        if(rightChildData != -1) {
+            node* child = new node(rightChildData);
+            front->right = child;
+            pendingNodes.push(child);
+        }
+    }
+    return root;
+}
+
+int main() {
+    node* root = takeInputLevelWise();
+    printTreeLevelWise(root);
+}
