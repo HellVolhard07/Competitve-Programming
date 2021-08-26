@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <cmath>
 
 using namespace std;
 
@@ -107,7 +108,50 @@ node* takeInputLevelWise() {
     return root;
 }
 
+int countNodes(node* root) {
+    if(!root) {
+        return 0;
+    }
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+bool findNode(node* root, int x) {
+    if(!root) {
+        return false;
+    }
+    if(root->data == x) {
+        return true;
+    }
+    bool leftSearch = findNode(root->left, x);
+    bool rightSearch = findNode(root->right, x);
+    
+    return leftSearch || rightSearch;
+}
+
+int height(node* root) {
+    if(!root) {
+        return 0;
+    }
+    return 1 + max(height(root->left), height(root->right));
+}
+
+void mirror(node* root) {
+    if(!root) {
+        return;
+    }
+    mirror(root->left);
+    mirror(root->right);
+    node* temp;
+    temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+}
+
 int main() {
     node* root = takeInputLevelWise();
+    printTreeLevelWise(root);
+    countNodes(root);
+    cout<<height(root);
+    mirror(root);
     printTreeLevelWise(root);
 }
