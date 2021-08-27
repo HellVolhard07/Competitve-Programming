@@ -180,7 +180,7 @@ node* buildTreeHelper(int* in, int* pre, int inS, int inE, int preS, int preE) {
     }
     int rootData = pre[preS];
     int rootIndex = -1;
-    for(int i = inS ; i < inE ; i++) {
+    for(int i = inS ; i <= inE ; i++) {
         if(in[i] == rootData) {
             rootIndex = i;
         }
