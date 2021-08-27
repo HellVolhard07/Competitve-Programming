@@ -147,11 +147,66 @@ void mirror(node* root) {
     root->right = temp;
 }
 
+void inorder(node* root) {
+    if(!root) {
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+void preorder(node* root) {
+    if(!root) {
+        return;
+    }
+    cout<<root->data<<" ";
+    inorder(root->left);
+    inorder(root->right);
+}
+
+void postorder(node* root) {
+    if(!root) {
+        return;
+    }
+    inorder(root->left);
+    inorder(root->right);
+    cout<<root->data<<" ";
+}
+
+node* buildTreeHelper(int* in, int* pre, int inS, int inE, int preS, int preE) {
+    if(inS > inE) {
+        return NULL;
+    }
+    int rootData = pre[preS];
+    int rootIndex = -1;
+    for(int i = inS ; i < inE ; i++) {
+        if(in[i] == rootData) {
+            rootIndex = i;
+        }
+    }
+    int lInS = inS;
+    int lInE = rootIndex - 1;
+    int lPreS = preS + 1;
+    int lPreE = lInE - lInS + lPreS;
+    int rInS = rootIndex + 1;
+    int rInE = inE;
+    int rPreS = lPreE + 1;
+    int rPreE = preE;
+    node* root = new node(rootData);
+    root->left = buildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = buildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
+    return root;
+}
+
+node* buildTree(int* in, int* pre, int size) {
+    return buildTreeHelper(in, pre, 0, size - 1, 0, size -1);
+}
+
 int main() {
-    node* root = takeInputLevelWise();
+    int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
+    int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+    node* root = buildTree(in, pre, 9);
     printTreeLevelWise(root);
-    countNodes(root);
-    cout<<height(root);
-    mirror(root);
-    printTreeLevelWise(root);
+    
 }
