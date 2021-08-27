@@ -174,7 +174,7 @@ void postorder(node* root) {
     cout<<root->data<<" ";
 }
 
-node* buildTreeHelper(int* in, int* pre, int inS, int inE, int preS, int preE) {
+node* preInBuildTreeHelper(int* in, int* pre, int inS, int inE, int preS, int preE) {
     if(inS > inE) {
         return NULL;
     }
@@ -194,19 +194,49 @@ node* buildTreeHelper(int* in, int* pre, int inS, int inE, int preS, int preE) {
     int rPreS = lPreE + 1;
     int rPreE = preE;
     node* root = new node(rootData);
-    root->left = buildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
-    root->right = buildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
+    root->left = preInBuildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = preInBuildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
     return root;
 }
 
-node* buildTree(int* in, int* pre, int size) {
-    return buildTreeHelper(in, pre, 0, size - 1, 0, size -1);
+node* preInBuildTree(int* in, int* pre, int size) {
+    return preInBuildTreeHelper(in, pre, 0, size - 1, 0, size -1);
+}
+
+node* postInBuildTreeHelper(int *in, int* post, int inS, int inE, int postS, int postE) {
+    if(inS > inE) {
+        return NULL;
+    }
+    int rootData = post[postE];
+    int rootIndex = -1;
+    for(int i = inS ; i <= inE ; i++) {
+        if(in[i] == rootData) {
+            rootIndex = i;
+        }
+    }
+    int lInS = inS;
+    int lInE = rootIndex - 1;
+    int lPostS = postS;
+    int lPostE = lInE - lInS + lPostS;
+    int rInS = rootIndex + 1;
+    int rInE = inE;
+    int rPostS = lPostE + 1;
+    int rPostE = postE - 1;
+    node* root = new node(rootData);
+    root->left = postInBuildTreeHelper(in, post, lInS, lInE, lPostS, lPostE);
+    root->right = postInBuildTreeHelper(in, post, rInS, rInE, rPostS, rPostE);
+    return root;
+}
+
+node* postInBuildTree(int* in, int* post, int size) {
+    return postInBuildTreeHelper(in, post, 0, size - 1, 0, size - 1);
 }
 
 int main() {
     int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
     int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
-    node* root = buildTree(in, pre, 9);
+    int post[] = {4, 5, 2, 8, 9, 6, 7, 3, 1};
+    node* root = postInBuildTree(in, post, 9);
     printTreeLevelWise(root);
     
 }
