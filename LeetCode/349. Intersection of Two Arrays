@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ans;
+        unordered_map<int, int> intersection;
+        for(auto num : nums1) {
+            intersection[num]++;
+        }
+        for(auto num : nums2) {
+            if(intersection[num] > 0) {
+                ans.push_back(num);
+                intersection[num] = 0;
+            }
+        }
+        return ans;
+    }
+};
