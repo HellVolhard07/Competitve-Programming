@@ -263,6 +263,28 @@ pair<int, int> heightDiameter(node* root) {
     return p;
 }
 
+int sumOfAllNodes(node* root) {
+    if(!root) {
+        return 0;
+    }
+    return sumOfAllNodes(root->left) + sumOfAllNodes(root->right) + root->data;
+}
+
+node* removeLeafNodes(node* root) {
+    if(!root) {
+        return NULL;
+    }
+    if(root->left == NULL and root->right == NULL) {
+        delete(root);
+        return NULL;
+    }
+    else {
+        root->left = removeLeafNodes(root->left);
+        root->right = removeLeafNodes(root->right);
+    }
+    return root;
+}
+
 int main() {
     /*int in[] = {4, 2, 5, 1, 8, 6, 9, 3, 7};
     int pre[] = {1, 2, 4, 5, 3, 6, 8, 9, 7};
