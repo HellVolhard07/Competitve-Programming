@@ -1,0 +1,20 @@
+class Solution{
+    public:
+    int kthSmallest(int arr[], int l, int r, int k) {
+        priority_queue<int> numbers;
+        for(int i = l ; i < k ; i++) {
+            numbers.push(arr[i]);
+        }
+        for(int i = k ; i <= r ; i++) {
+            numbers.push(arr[i]);
+            numbers.pop();
+        }
+        return numbers.top();
+    }
+};
+
+/*
+int n = r - l + 1;
+sort(arr, arr + n);
+return arr[k - 1];
+*/
