@@ -1,0 +1,48 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        unordered_map<char, int> check;
+        for(int i = 0 ; i < 9 ; i++) {
+            for(int j = 0 ; j < 9 ; j++) {
+                if(board[i][j] != '.'){
+                    check[board[i][j]]++;
+                    if(check[board[i][j]] > 1) {
+                        return false;
+                    }
+                }
+            }
+            check.clear();
+        }
+        for(int i = 0 ; i < 9 ; i++) {
+            for(int j = 0 ; j < 9 ; j++) {
+                if(board[j][i] != '.'){
+                    check[board[j][i]]++;
+                    if(check[board[j][i]] > 1) {
+                        return false;
+                    }
+                }
+            }
+            check.clear();
+        }
+        for(int r = 0 ; r < 3 ; r++) {
+            for(int c = 0 ; c < 3 ; c++) {
+                int rowStart = r * 3;
+                int rowEnd = ((r + 1) * 3) - 1;
+                int columnStart = c * 3;
+                int columnEnd = ((c + 1) * 3) - 1;
+                for(int i = rowStart ; i <= rowEnd ; i++) {
+                    for(int j = columnStart ; j <= columnEnd ; j++) {
+                        if(board[i][j] != '.') {
+                            check[board[i][j]]++;
+                            if(check[board[i][j]] > 1) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                check.clear();
+            }
+        }
+        return true;
+    }
+};
