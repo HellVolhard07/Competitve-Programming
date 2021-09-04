@@ -1,0 +1,7 @@
+void rotate(int A[], int n)
+{
+    int last = A[n - 1];
+    for(int i = n - 1 ; i > 0 ; i--) {
+        swap(A[i], A[i - 1]);
+    }
+}
