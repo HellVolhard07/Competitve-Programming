@@ -1,0 +1,10 @@
+int doUnion(int A[], int n, int B[], int m)  {
+        unordered_map<int, int> numbers;
+        for(int i = 0 ; i < n ; i++) {
+            numbers[A[i]]++;
+        }
+        for(int i = 0 ; i < m ; i++) {
+            numbers[B[i]]++;
+        }
+        return numbers.size();
+    }
