@@ -1,0 +1,19 @@
+void sort012(int A[], int n)
+    {
+        int start = 0;
+        int end = n - 1;
+        int mid = 0;
+        while(mid <= end) {
+            switch(A[mid]) {
+                case 0:
+                    swap(A[mid++], A[start++]);
+                    break;
+                case 1: 
+                    mid++;
+                    break;
+                case 2:
+                    swap(A[mid], A[end--]);
+                    break;
+            }
+        }
+    }
