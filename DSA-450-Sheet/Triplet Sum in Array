@@ -1,0 +1,21 @@
+bool find3Numbers(int A[], int n, int X)
+    {
+        sort(A, A + n);
+        for(int i = 0 ; i < n ; i++) {
+            int target = X - A[i];
+            int start = i + 1;
+            int end = n - 1;
+            while(start < end) {
+                if(A[start] + A[end] > target) {
+                    end--;
+                }
+                else if(A[start] + A[end] < target) {
+                    start++;
+                }
+                else {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
