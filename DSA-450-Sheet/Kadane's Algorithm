@@ -1,0 +1,10 @@
+long long maxSubarraySum(int A[], int n){
+        long long maxEndingHere = A[0];
+        long long maxSoFar = A[0];
+        for(int i = 1 ; i < n ; i++) {
+            long long num = A[i];
+            maxEndingHere = max(num, maxEndingHere + num);
+            maxSoFar = max(maxEndingHere, maxSoFar);
+        }
+        return maxSoFar;
+    }
