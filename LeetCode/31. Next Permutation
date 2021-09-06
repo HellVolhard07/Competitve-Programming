@@ -1,0 +1,32 @@
+class Solution {
+public:
+    
+    void reverse(vector<int>& nums, int n, int s = 0) {
+        int start = s;
+        int end = n - 1;
+        while(start < end) {
+        swap(nums[start++], nums[end--]);
+        }
+    }
+    
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        int cut, paste;
+        for(cut = n - 2 ; cut >= 0 ; cut--) {
+            if(nums[cut] < nums[cut + 1]) {
+                break;
+            }
+        }
+        if(cut < 0) {
+            reverse(nums, n);
+            return;
+        }
+        for(int paste = n - 1 ; paste > cut ; paste--) {
+            if(nums[paste] > nums[cut]) {
+                swap(nums[paste], nums[cut]);
+                reverse(nums, n, cut + 1);
+                return;
+            }
+        }
+    }
+};
