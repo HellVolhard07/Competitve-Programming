@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void selection_sort(vector<int> &A, int n) {
+    for(int i = 0 ; i < n - 1 ; i++) {
+        int min_position = i;
+        for(int j = i + 1 ; j < n ; j++) {
+            if(A[j] < A[min_position]) {
+                min_position = j;
+            }
+        }
+        swap(A[i], A[min_position]);
+    }
+}
+
+int main() {
+    vector<int> A = {1, 5, 4, 2, 3, 6, 7, 8};
+    selection_sort(A, 8);
+    for(auto i : A) {
+        cout<<i<<" ";
+    }
+    return 0;
+}
