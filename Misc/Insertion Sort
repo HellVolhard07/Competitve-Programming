@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void insertion_sort(vector<int> &A, int n) {
+    for(int i = 1 ; i < n ; i++) {
+        int current = A[i];
+        int prev = i - 1;
+        while(prev >= 0 and A[prev] > current) {
+            A[prev + 1] = A[prev];
+            prev--;
+        }
+        A[prev + 1] = current;
+    }
+}
+
+int main() {
+    vector<int> A = {1, 5, 4, 2, 3, 6, 7, 8};
+    insertion_sort(A, 8);
+    for(auto i : A) {
+        cout<<i<<" ";
+    }
+    return 0;
+}
