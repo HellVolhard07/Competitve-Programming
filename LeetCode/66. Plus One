@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int> &digits) {
+    int n = digits.size();
+    int i = n - 1;
+    int nineCount = 0;
+    while (i >= 0 and digits[i] == 9) {
+        nineCount++;
+        i--;
+    }
+    if (nineCount == n) {
+        for (int i = 0; i < n; i++) {
+            digits[i] = 0;
+        }
+        digits.insert(digits.begin(), 1);
+        return digits;
+    }
+    else {
+        digits[n - nineCount - 1]++;
+        for (int i = n - 1; i > n - nineCount - 1; i--) {
+            digits[i] = 0;
+        }
+        return digits;
+    }
+}
+};
