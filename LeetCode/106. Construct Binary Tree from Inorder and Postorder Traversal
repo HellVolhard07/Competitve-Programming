@@ -1,0 +1,37 @@
+class Solution {
+public:
+    
+    TreeNode* postInBuildTreeHelper(vector<int>& in, vector<int>& post, int inS, int inE, int postS, int postE) {
+        if(inS > inE) {
+            return NULL;
+        }
+        int rootData = post[postE];
+        int rootIndex = -1;
+        for(int i = inS ; i <= inE ; i++) {
+            if(in[i] == rootData) {
+                rootIndex = i;
+            }
+        }
+        int lInS = inS;
+        int lInE = rootIndex - 1;
+        int lPostS = postS;
+        int lPostE = lInE - lInS + lPostS;
+        int rInS = rootIndex + 1;
+        int rInE = inE;
+        int rPostS = lPostE + 1;
+        int rPostE = postE - 1;
+        TreeNode* root = new TreeNode(rootData);
+        root->left = postInBuildTreeHelper(in, post, lInS, lInE, lPostS, lPostE);
+        root->right = postInBuildTreeHelper(in, post, rInS, rInE, rPostS, rPostE);
+        return root;
+    }
+
+    TreeNode* postInBuildTree(vector<int>& in, vector<int>& post, int size) {
+        return postInBuildTreeHelper(in, post, 0, size - 1, 0, size - 1);
+    }
+    
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        return postInBuildTree(inorder, postorder, n);
+    }
+};
