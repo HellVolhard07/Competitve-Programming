@@ -1,0 +1,11 @@
+int fastPower(int x, int n) {
+    int ans = 1;
+    while(n) {
+        if(n & 1) {
+            ans *= x;
+        }
+        x *= x;
+        n >>= 1;
+    }
+    return ans;
+}
