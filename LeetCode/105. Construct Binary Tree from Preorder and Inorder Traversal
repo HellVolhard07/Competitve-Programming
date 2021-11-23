@@ -1,0 +1,33 @@
+class Solution {
+public:
+    
+    TreeNode* preInBuildTreeHelper(vector<int> in, vector<int> pre, int inS, int inE, int preS, int preE) {
+    if(inS > inE) {
+        return NULL;
+    }
+    int rootData = pre[preS];
+    int rootIndex = -1;
+    for(int i = inS ; i <= inE ; i++) {
+        if(in[i] == rootData) {
+            rootIndex = i;
+        }
+    }
+    int lInS = inS;
+    int lInE = rootIndex - 1;
+    int lPreS = preS + 1;
+    int lPreE = lInE - lInS + lPreS;
+    int rInS = rootIndex + 1;
+    int rInE = inE;
+    int rPreS = lPreE + 1;
+    int rPreE = preE;
+    TreeNode* root = new TreeNode(rootData);
+    root->left = preInBuildTreeHelper(in, pre, lInS, lInE, lPreS, lPreE);
+    root->right = preInBuildTreeHelper(in, pre, rInS, rInE, rPreS, rPreE);
+    return root;
+}
+    
+    TreeNode* buildTree(vector<int>& pre, vector<int>& in) {
+        int size = pre.size();
+        return preInBuildTreeHelper(in, pre, 0, size - 1, 0, size -1);
+    }
+};
